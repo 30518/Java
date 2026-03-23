@@ -1,0 +1,14 @@
+package test;
+
+public class For2Demo {
+
+	public static void main(String[] args) {
+		for (int row = 2; row < 100; row++) {
+			for (int column = 1; column < 100; column++) {
+				System.out.printf("%6d", row * column);
+			}
+			System.out.println();
+		}
+		System.out.println("홍인선");
+	}
+}
