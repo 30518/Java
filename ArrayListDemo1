@@ -1,0 +1,36 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ArrayListDemo1 {
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		
+		System.out.println("학생 수? ");
+		int i = in.nextInt();
+		
+		int [] scores = new int [i];
+		
+		System.out.println(i + "명의 학생 성적을 입력하세요.");
+		
+		for (int j = 0; j < i; j++) {
+			System.out.print(scores[j] + " ");
+		}
+		System.out.println();
+		
+		
+		
+		
+		
+		ArrayList<Integer> scores = new ArrayList<>();
+		int data;
+		int sum = 0;
+		
+		while ((data = in.nextInt()) >= 0)
+			scores.add(data);
+		
+		for (int i = 0; i < scores.size(); i++)
+			sum += scores.get(i);
+		
+		System.out.println("평균 = " + (double)sum / scores.size());
+	}
+}
