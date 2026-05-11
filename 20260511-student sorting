@@ -1,0 +1,95 @@
+import java.util.Scanner;
+import java.util.Scanner;
+class student{
+	private String name;
+	private String hakbun;
+	private float korean;
+	private float english;
+	private float sum;
+	
+	public void setname(String a) {
+		this.name = a;
+	}
+	public void setkorean(float a) {
+		this.korean = a;
+	}
+	public void setenglish(float a) {
+		this.english = a;
+	}
+	public String getname() {
+		return(this.name);
+	}
+	public float getkorean() {
+		return(this.korean);
+	}
+	public float getenglish() {
+		return(this.english);
+	}
+	public float getsum() {
+		return(this.sum);
+	}
+	public void computesum() {
+		this.sum = this.getkorean() + this.getenglish();
+	}
+}
+public class hello {
+
+	public static void main(String[] args) {
+		int n;
+		float sum, total;
+		Scanner in, ins;
+		
+		System.out.println("How many students do you want to input?");
+		
+		in = new Scanner(System.in);
+		ins = new Scanner(System.in);
+		
+		n = in.nextInt();
+		
+		student[] std = new student[n];
+		for (int i = 0; i < n; i++) {
+			std[i] = new student();
+			
+			System.out.println("");
+			System.out.println("Please enter name!");
+			std[i].setname(ins.nextLine());
+			System.out.println("");
+			
+			System.out.printf("Please enter %s's KOREAN points! \n",std[i].getname());
+			std[i].setkorean(in.nextInt());
+			System.out.println("");
+			System.out.printf("OK! then please enter %s's ENGLISH points!\n",std[i].getname());
+			std[i].setenglish(in.nextInt());
+			System.out.println("");
+			
+			std[i].computesum();
+		}
+		
+		System.out.println("This is a result before sorting!!");
+		
+		for (int i = 0; i < n; i++)
+			System.out.printf("%s's sum is %f \n", std[i].getname(),std[i].getsum());
+		
+		int max;
+		student temp = new student();
+		
+		for (int j = 0; j < n-1; j++) {
+			max = j;
+			
+			for (int k = j+1; k < n; k++) {
+				if(std[k].getsum() > std[max].getsum())
+					max = k;
+			}
+			
+			temp = std[j];
+			std[j] = std[max];
+			std[max] = temp;
+		}
+		
+		System.out.println("\nThis is a result after sorting!!");
+		
+		for (int i = 0; i < n; i++)
+			System.out.printf("%s's sum is %f \n", std[i].getname(),
+					std[i].getsum());
+	}
+}
