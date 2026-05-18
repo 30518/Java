@@ -3,7 +3,7 @@ import javax.swing.*;
 
 public class ComponentDemo extends JFrame {
 	ComponentDemo() {
-		setTitle("원 넓이 구하기");
+		setTitle("홍인선_원 넓이 구하기");
 		
 		setLayout(new BorderLayout(10, 10));
 		showNorth();
