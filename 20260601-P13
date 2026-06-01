@@ -1,0 +1,100 @@
+class SRobot {
+	String name;
+	
+	boolean fly;
+	boolean run;
+	boolean swim;
+	
+	public void battle(SDrone flydragon, SDrone flylion)
+	{
+		System.out.printf("battle [%s <--> %s] happens!! \n", flydragon.name,flylion.name);
+	}
+}
+class SDrone extends SRobot {
+	int current_energy;
+	
+	public SDrone(String a) {
+		
+		name = a;
+		fly = true;
+		run = true;
+		swim = false;
+		this.current_energy = get_initial_energy();
+	}
+	public void print_status() {
+		System.out.printf(" ==== %s의 유닛 정보 출력 : ==== \n",name);
+		System.out.printf(" %s current energe %d: ==== \n",name,current_energy);
+	}
+	
+	public int get_initial_energy() {
+		int e;
+		e = (int) (Math.random() * 100) % 100;
+		return e;
+	}
+	
+	public void battle(SDrone flydragon, SDrone flylion) {
+		
+		super.battle(flydragon, flylion);
+		while(true) {
+			int d;
+			d = (int)(Math.random() * 100) % 100;
+			System.out.printf(" ==== Battle ... ==== \n",flylion.name);
+			
+			try {
+				Thread.sleep(1500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			if(flydragon.current_energy < 40) {
+				System.out.printf(" ==== %s가 전사하였습니다!! ==== \n",flydragon.name);
+				break;
+			}
+			
+			else if(flylion.current_energy < 40) {
+				System.out.printf(" ==== %s가 전사하였습니다!! ==== \n",flydragon.name);
+				break;
+			}
+			
+			else {
+				if (Math.abs(d - flydragon.current_energy) > Math.abs(d - flylion.current_energy)) {
+					System.out.printf(" ==== %s의 승리 ==== \n", flylion.name);
+					flylion.current_energy += 10;
+					flydragon.current_energy -= 10;
+					flydragon.print_status();
+					flylion.print_status();
+				}
+				else if (Math.abs(d - flydragon.current_energy) < Math.abs(d - flylion.current_energy)) {
+					System.out.printf(" ==== %s의 승리 ==== \n", flydragon.name);
+					flylion.current_energy -= 10;
+					flydragon.current_energy += 10;
+					flydragon.print_status();
+					flylion.print_status();
+				}
+				
+				else {
+					System.out.printf(" ==== 무승부 ==== \n");
+				}
+			}
+		}
+	}
+}
+public class P13 {
+
+	public static void main(String[] args) {
+		System.out.printf(" ==== 캐릭터 기반 콘솔 Simulation ==== \n");
+		
+		SDrone flydragon = new SDrone("홍인선");
+		SDrone flylion = new SDrone("인선 홍");
+		
+		flydragon.print_status();
+		flylion.print_status();
+		
+		flydragon.battle(flydragon, flylion);
+		
+		flydragon.print_status();
+		flylion.print_status();
+
+	}
+
+}
